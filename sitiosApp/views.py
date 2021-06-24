@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .models import *
 def inicio(request):
-    return render(request, 'index.html')
+    solicitud = solicitudtrabajo.objects.all()
+    contexto = {"trabajo":solicitud}
+    return render(request, 'index.html', contexto)
 def base(request):
     return render(request, 'base.html')
 def sol_ayu(request):
