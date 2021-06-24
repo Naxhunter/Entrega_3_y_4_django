@@ -7,7 +7,9 @@ def inicio(request):
 def base(request):
     return render(request, 'base.html')
 def sol_ayu(request):
-    return render(request, 'sol_ayu.html')
+    solicitud = solicitudayuda.objects.all()
+    contexto = {"ayuda":solicitud}
+    return render(request, 'sol_ayu.html',contexto)
 def mot_rec(request):
     return render(request, 'mot_rec.html')
 def ayuda(request):
@@ -71,7 +73,9 @@ def register_work(request):
         return render(request, 'register_work.html', contexto)
     return render(request, 'register_work.html')
 def sol_tra(request):
-    return render(request, 'sol_tra.html')
+    solicitud = solicitudtrabajo.objects.all()
+    contexto = {"trabajo":solicitud}
+    return render(request, 'sol_tra.html', contexto)
 def mot_rec_tr(request):
     return render(request, 'mot_rec_tr.html')
 def sol_ser(request):
