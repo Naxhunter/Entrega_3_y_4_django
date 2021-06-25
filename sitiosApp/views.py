@@ -71,7 +71,8 @@ def register(request):
 
 def anterior(request):
     solicitud = solicitudtrabajo.objects.all()
-    contexto = {"trabajo":solicitud}
+    categorias = categoria.objects.all()
+    contexto = {"trabajo":solicitud,"categorias":categorias}
     return render(request, 'trabanterior.html',contexto)
 def frabajo(request, id):
     contexto={"solicitud":""}
