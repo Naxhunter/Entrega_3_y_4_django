@@ -80,10 +80,15 @@ Trabajos de la semana
             <td>telefono</td>
         </tr>
         {% for reg in trabajapi %}
-        <tr>{{reg.email}}</tr>
-        <tr>{{reg.nombre}}</tr>
-        <tr>{{reg.especialidad}}</tr>
-        <tr>{{reg.telefono}}</tr>
+        <tr><td>{{reg.email}}</td>
+        <td>{{reg.nombre}}</td>
+        <td>{{reg.especialidad}}</td>
+        <td>{{reg.telefono}}</td>
+
+            
+        
+        
+        </tr>
         {% endfor %}
     </table>
 </section>
