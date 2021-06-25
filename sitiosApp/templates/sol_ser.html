@@ -7,16 +7,28 @@
 
 {% block tagizq %}
 <!-- añada los tag izq -->
-<a href="{%url 'LOGIN'%}" class="Enlace" style="font-size: 20px;
-    text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px; ">Login</a>
-<a href="{%url 'REGISTER'%}" class="Enlace" style="font-size: 20px;
-    text-decoration: none;color:#ffd859;font-weight: bold;padding-left: 10px; ">Register</a>
+
+{% if user.is_authenticated %}
 <a href="{% url 'CUENTA' %}" class="Enlace" style="font-size: 20px;
     text-decoration: none;color:#ffd859;font-weight: bold;padding-left: 10px; ">Account</a>
+<a href="#" class="Enlace" style="font-size: 20px;
+    text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px;">Bienvenido/a {{user.first_name}}</a>
+<a href="{% url 'SALIR' %}" class="Enlace" style="font-size: 20px;
+text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px;">Cerrar Sesión</a>
 <a href="{%url 'IND'%}" class="Enlace" style="font-size: 20px;
     text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px;">Inicio</a>
 <a href="{%url 'AYUDA'%}" class="Enlace" style="font-size: 20px;
     text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px;">Help</a>
+{% else %}
+<a href="{%url 'LOGIN'%}" class="Enlace" style="font-size: 20px;
+    text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px; ">Login</a>
+<a href="{%url 'REGISTER'%}" class="Enlace" style="font-size: 20px;
+    text-decoration: none;color:#ffd859;font-weight: bold;padding-left: 10px; ">Register</a>
+<a href="{%url 'IND'%}" class="Enlace" style="font-size: 20px;
+    text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px;">Inicio</a>
+<a href="{%url 'AYUDA'%}" class="Enlace" style="font-size: 20px;
+    text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px;">Help</a>
+{% endif %}
 {% endblock tagizq %}
 
 

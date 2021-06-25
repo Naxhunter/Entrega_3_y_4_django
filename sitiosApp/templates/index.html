@@ -14,6 +14,8 @@
     text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px;">Bienvenido/a {{user.first_name}}</a>
 <a href="{% url 'SALIR' %}" class="Enlace" style="font-size: 20px;
 text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px;">Cerrar Sesión</a>
+<a href="{%url 'AYUDA'%}" class="Enlace" style="font-size: 20px;
+    text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px;">Help</a>
 {% else %}
 <a href="{%url 'LOGIN'%}" class="Enlace" style="font-size: 20px;
     text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px; ">Login</a>
