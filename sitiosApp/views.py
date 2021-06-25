@@ -108,6 +108,11 @@ def register_work(request):
             especialidad=esp,
             telefono=tel
         )
+        nuevo_usuario = User()
+        nuevo_usuario.username = email
+        nuevo_usuario.set_password(passw)
+        nuevo_usuario.first_name = nombre
+        nuevo_usuario.save()
         contexto ={"mensaje":"Registrado con exito"}
         usuario.save()
         return render(request, 'register_work.html', contexto)
