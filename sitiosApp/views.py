@@ -49,8 +49,14 @@ def anterior(request):
     solicitud = solicitudtrabajo.objects.all()
     contexto = {"trabajo":solicitud}
     return render(request, 'trabanterior.html',contexto)
-def frabajo(request):
-    return render(request, 'ficha_trabajo.html')
+def frabajo(request, id):
+    contexto={"solicitud":""}
+    soli = solicitudtrabajo.objects.get(correo=id)
+    atencion = recepciontrabajo.objects.get(solicitudt=soli)
+    #if(atencion.solicitudt==soli.correo):
+     #   contexto = {"solicitud":soli,"ate":atencion}*/
+    contexto = {"solicitud":soli,"ate":atencion}
+    return render(request, 'ficha_trabajo.html', contexto)
 def cuenta(request):
     return render(request, 'cuenta.html')
 

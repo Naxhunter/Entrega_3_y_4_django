@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.fields.related import ForeignKey
 
 # Create your models here.
 class CategoriaUnormal(models.Model):
@@ -30,6 +31,14 @@ class solicitudayuda(models.Model):
     imagen=models.ImageField(upload_to='solitudesa', null=True)
     def __str__(self):
         return self.correo
-        
-
+class recepciontrabajo(models.Model):
+    num_unico=models.IntegerField(primary_key=True)
+    fecha=models.CharField(max_length=30)
+    tipo_de_trabajo=models.CharField(max_length=100)
+    comentarios = models.CharField(max_length=50)
+    materiales = models.CharField(max_length=200)
+    solicitudt = models.ForeignKey(solicitudtrabajo, on_delete=models.CASCADE)
+    trabajador = models.ForeignKey(CategoriaUtrabajador, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.fecha
 

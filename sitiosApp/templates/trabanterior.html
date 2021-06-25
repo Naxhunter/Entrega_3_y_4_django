@@ -57,7 +57,7 @@ Trabajos anteriores
     {% for reg in trabajo %}
     <div class="col-sm-6" style="padding: 5px 5px 5px 5px;">
       <div class="imagebox">
-        <a href="#hola">
+        <a href="{% url 'FICHATRABAJO' reg.correo %}">
           <img src="{{reg.imagen.url}}" class="category-banner img-responsive" width="400px" height="300px">
           <span class="imagebox-desc">Descripcion trabajo</span>
         </a>
