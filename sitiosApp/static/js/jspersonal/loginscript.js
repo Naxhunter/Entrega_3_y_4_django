@@ -1,34 +1,37 @@
 function login(){
-    var validar = emailval();
+    var validar = email();
     if(validar==false){
         return false;
     }
-    validar = contrval();
+    validar = contra();
     if(validar==false){
         return false;
     }
     return true;
 }
-
-
-function emailval(){
-    var email = document.getElementById('emaillog').value;
-    var dos = email.length;
-    if(dos<6){
+function email(){
+    var email = document.getElementById('txtEmail').value;
+    /*alert("entre");*/
+    var quitar = email.trim();
+    var nvoemail = quitar.length;
+    if(nvoemail<6){
         error = "Su email no puede tener menos de 6 caracteres.";
+        document.getElementById('error_0').innerHTML = error;
+        return false;
+    }
+    document.getElementById('error_0').innerHTML = "";
+    return true;
+}
+
+function contra(){
+    var pass_user = document.getElementById('txtPasslog').value;
+    var quitar = pass_user.trim();
+    var nvapass = quitar.length;
+    if(nvapass < 8 || nva_pass >30){
+        error = "Mínimo 8 caracteres para la contraseña y máximo 30 caracteres."
         document.getElementById('error_1').innerHTML = error;
         return false;
     }
-    return true;
-}
-
-function contrval(){
-    var pass_user = document.getElementById('passlog').value;
-    var num_pass = pass_user.length;
-    if(num_pass < 8 || num_pass >30){
-        error = "Mínimo 8 caracteres para la contraseña y máximo 30 caracteres."
-        document.getElementById('error_2').innerHTML = error;
-        return false;
-    }
+    document.getElementById('error_1').innerHTML = "";
     return true;
 }

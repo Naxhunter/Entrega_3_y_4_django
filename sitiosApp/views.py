@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from .models import *
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, logout, login as login_aut
+from django.contrib.auth.decorators import login_required
 def inicio(request):
     solicitud = solicitudtrabajo.objects.all()
     contexto = {"trabajo":solicitud}
@@ -29,6 +32,16 @@ def ayuda(request):
         return render(request,"ayuda.html", contexto)
     return render(request, 'ayuda.html')
 def login(request):
+    if request.POST:
+        email = request.POST.get("txtEmail")
+        contra = request.POST.get("txtPasslog")
+        us = authenticate(request, username=email, password=contra)
+        if us is not None and us.is_active:
+            return render(request, 'index.html')
+        else:
+            contexto= {"mensaje":"Email o Contraseña incorrecto"}
+            return render(request, 'login.html', contexto)
+
     return render(request, 'login.html')
 def register(request):
     if(request.POST):

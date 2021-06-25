@@ -31,14 +31,14 @@ Trabajos anteriores
 {% block contenido %}
 <!-- añada el contenido personal de la página -->
 <div class="input-group" style="padding-bottom: 10px;">
-  <form action="" class="input-group" class="col">
+  <form action="{% url 'ANTERIORES' %}" method="POST" class="input-group" class="col">
 
     <div>
       <!-- AQUI AGREGAR COMBOBOX -->
-      <select class="form-select" aria-label="Default select example">
+      <select class="form-select" aria-label="Default select example" name="cboCategoria" id="cboCategoria">
         <option selected>Seleccione filtro</option>
         <option value="1">Trabajador</option>
-        <option value="2">Tipo de trabajo</option>
+        <option value="2">Fecha</option>
       </select>
       <!-- Combo box-->
     </div>
@@ -59,7 +59,7 @@ Trabajos anteriores
       <div class="imagebox">
         <a href="{% url 'FICHATRABAJO' reg.correo %}">
           <img src="{{reg.imagen.url}}" class="category-banner img-responsive" width="400px" height="300px">
-          <span class="imagebox-desc">Descripcion trabajo</span>
+          <span class="imagebox-desc">Descripcion trabajo: {{reg.descripcion}}</span>
         </a>
       </div>
     </div>
