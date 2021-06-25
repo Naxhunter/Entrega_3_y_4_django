@@ -3,9 +3,16 @@ from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout, login as login_aut
 from django.contrib.auth.decorators import login_required
+#Gestion peticiones HTTP
+import requests
 def inicio(request):
     solicitud = solicitudtrabajo.objects.all()
     contexto = {"trabajo":solicitud}
+#Consumo de API api/trabuscar
+    response = requests.get('http://127.0.0.1:8000/api/trabajador/')
+    trabajapi = response.json()
+    contexto["trabajapi"] = trabajapi
+    #----------------------------
     return render(request, 'index.html', contexto)
 def base(request):
     return render(request, 'base.html')

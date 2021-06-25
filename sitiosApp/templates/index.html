@@ -67,6 +67,27 @@ Trabajos de la semana
         <span class="visually-hidden">Next</span>
     </button>
 </div>
+
+<section>
+    <h1>
+        Listado
+    </h1>
+    <table>
+        <tr>
+            <td>email</td>
+            <td>nombre</td>
+            <td>especialidad</td>
+            <td>telefono</td>
+        </tr>
+        {% for reg in trabajapi %}
+        <tr>{{reg.email}}</tr>
+        <tr>{{reg.nombre}}</tr>
+        <tr>{{reg.especialidad}}</tr>
+        <tr>{{reg.telefono}}</tr>
+        {% endfor %}
+    </table>
+</section>
+
 {% endblock contenido %}
 
 {% block js %}
