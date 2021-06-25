@@ -46,7 +46,9 @@ def register(request):
     return render(request, 'register.html')
 
 def anterior(request):
-    return render(request, 'trabanterior.html')
+    solicitud = solicitudtrabajo.objects.all()
+    contexto = {"trabajo":solicitud}
+    return render(request, 'trabanterior.html',contexto)
 def frabajo(request):
     return render(request, 'ficha_trabajo.html')
 def cuenta(request):

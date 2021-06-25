@@ -54,14 +54,16 @@ Trabajos anteriores
     <!-- Contenedor esquina superior izquierda-->
     <!-- HACER LAS IMAGENES RESPONSIVAS pero no arruinar nada antes de subir un commit-->
     <!-- for -->
+    {% for reg in trabajo %}
     <div class="col-sm-6" style="padding: 5px 5px 5px 5px;">
       <div class="imagebox">
         <a href="#hola">
-          <img src="//placeimg.com/400/400/animals" class="category-banner img-responsive">
+          <img src="{{reg.imagen.url}}" class="category-banner img-responsive" width="400px" height="300px">
           <span class="imagebox-desc">Descripcion trabajo</span>
         </a>
       </div>
     </div>
+    {% endfor %}
     <!-- end for -->
     <!--
     <div class="col-sm-6" style="padding: 5px 5px 5px 5px;">
