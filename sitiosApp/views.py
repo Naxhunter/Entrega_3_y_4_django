@@ -37,12 +37,18 @@ def login(request):
         contra = request.POST.get("txtPasslog")
         us = authenticate(request, username=email, password=contra)
         if us is not None and us.is_active:
+            login_aut(request,us)
             return render(request, 'index.html')
         else:
             contexto= {"mensaje":"Email o Contraseña incorrecto"}
             return render(request, 'login.html', contexto)
 
     return render(request, 'login.html')
+def salir(request):
+    logout(request)
+    solicitud = solicitudtrabajo.objects.all()
+    contexto = {"trabajo":solicitud}
+    return render(request, 'index.html', contexto)
 def register(request):
     if(request.POST):
         nombre = request.POST.get('txtNombre')
@@ -55,6 +61,11 @@ def register(request):
         )
         contexto ={"mensaje":"Registrado con exito"}
         usuario.save()
+        nuevo_usuario = User()
+        nuevo_usuario.username = email
+        nuevo_usuario.set_password(passw)
+        nuevo_usuario.first_name = nombre
+        nuevo_usuario.save()
         return render(request, 'register.html', contexto)
     return render(request, 'register.html')
 

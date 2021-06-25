@@ -31,6 +31,11 @@ class solicitudayuda(models.Model):
     imagen=models.ImageField(upload_to='solitudesa', null=True)
     def __str__(self):
         return self.correo
+class categoria(models.Model):
+    num_unico=models.IntegerField(primary_key=True)
+    trabajo_cate=models.CharField(max_length=150)
+    def __str__(self):
+        return self.trabajo_cate
 class recepciontrabajo(models.Model):
     num_unico=models.IntegerField(primary_key=True)
     fecha=models.CharField(max_length=30)
@@ -39,6 +44,7 @@ class recepciontrabajo(models.Model):
     materiales = models.CharField(max_length=200)
     solicitudt = models.ForeignKey(solicitudtrabajo, on_delete=models.CASCADE)
     trabajador = models.ForeignKey(CategoriaUtrabajador, on_delete=models.CASCADE)
+    categoria = models.ForeignKey(categoria, on_delete=models.CASCADE)
     def __str__(self):
         return self.fecha
 

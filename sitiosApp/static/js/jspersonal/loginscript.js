@@ -27,7 +27,7 @@ function contra(){
     var pass_user = document.getElementById('txtPasslog').value;
     var quitar = pass_user.trim();
     var nvapass = quitar.length;
-    if(nvapass < 8 || nva_pass >30){
+    if(nvapass < 8 || nvapass >30){
         error = "Mínimo 8 caracteres para la contraseña y máximo 30 caracteres."
         document.getElementById('error_1').innerHTML = error;
         return false;

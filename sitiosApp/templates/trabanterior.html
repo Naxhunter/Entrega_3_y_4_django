@@ -37,11 +37,13 @@ Trabajos anteriores
       <!-- AQUI AGREGAR COMBOBOX -->
       <select class="form-select" aria-label="Default select example" name="cboCategoria" id="cboCategoria">
         <option selected>Seleccione filtro</option>
-        <option value="1">Trabajador</option>
-        <option value="2">Fecha</option>
+        {% for reg in #categorias# %}
+        <option value="{{}}">{{}}</option>
+        {% endfor %}
       </select>
       <!-- Combo box-->
     </div>
+    <!-- buscar por nombre -->
     <input type="search" class="form-control rounded" placeholder="Buscar trabajador o especialidad de trabajo"
         aria-label="Search" aria-describedby="search-addon" />
       <button type="button" class="btn btn-outline-primary">Buscar</button>
