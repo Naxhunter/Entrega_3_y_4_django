@@ -68,26 +68,24 @@ Trabajos de la semana
     </button>
 </div>
 <br>
-<section class="container">
-    <h1>
+<section class="container" style="background-color:#ffd859;color:#E33603; font-size: 20px; font-weight: bold;border: solid 5px #E33603; ">
+    <h1 style="font-size: 28px;font-weight: bold;">
         Listado
     </h1>
-    <table  class="container">
-        <tr>
-            <td>email</td>
-            <td>nombre</td>
-            <td>especialidad</td>
-            <td>telefono</td>
+    <br>
+    <table class="container" style="background-color:#ffd859;color:#E33603; font-size: 20px; font-weight: bold; ">
+        <tr style="background-color:#E33603;color: #ffd859;">
+            <td>Email</td>
+            <td>Nombre</td>
+            <td>Especialidad</td>
+            <td>Teléfono</td>
         </tr>
         {% for reg in trabajapi %}
-        <tr><td>{{reg.email}}</td>
-        <td>{{reg.nombre}}</td>
-        <td>{{reg.especialidad}}</td>
-        <td>{{reg.telefono}}</td>
-
-            
-        
-        
+        <tr>
+            <td>{{reg.email}}</td>
+            <td>{{reg.nombre}}</td>
+            <td>{{reg.especialidad}}</td>
+            <td>{{reg.telefono}}</td>
         </tr>
         {% endfor %}
     </table>
