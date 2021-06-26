@@ -75,8 +75,6 @@ def register(request):
         nuevo_usuario.save()
         return render(request, 'register.html', contexto)
     return render(request, 'register.html')
-
-
 def anterior(request):
     solicitud = solicitudtrabajo.objects.all()
     categorias = categoria.objects.all()
@@ -105,7 +103,6 @@ def filtrar_cate(request):
         recepciones = recepciontrabajo.objects.filter(categoria=obj_categoria)
     contexto = {"categorias":categorias, "recepcion":recepciones}
     return render(request, 'trabanterior.html',contexto)
-
 def frabajo(request, id):
     contexto={"solicitud":""}
     soli = solicitudtrabajo.objects.get(correo=id)
@@ -116,7 +113,6 @@ def frabajo(request, id):
     return render(request, 'ficha_trabajo.html', contexto)
 def cuenta(request):
     return render(request, 'cuenta.html')
-
 def register_work(request):
     if(request.POST):
         rut = request.POST.get('txtRut')
