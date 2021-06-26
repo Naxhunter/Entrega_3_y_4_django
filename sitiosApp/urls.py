@@ -20,4 +20,5 @@ urlpatterns = [
     path('ADM',admini,name="ADM"),
     path('SALIR', salir, name="SALIR"),
     path('FILTRAR', filtrar_cate, name="FILTRAR"),
+    path('FITRARN', filtrar_nombre, name="FILTRARN"),
 ]

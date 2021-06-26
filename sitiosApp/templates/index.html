@@ -56,7 +56,8 @@ Trabajos de la semana
         </div>
         {% for reg in trabajo %}
         <div class="carousel-item">
-            <a href="{% url 'ANTERIORES' %}"><img src="{{reg.imagen.url}}" class="d-block w-100" alt="..." width="800px" height="500px"></a>
+            <a href="{% url 'ANTERIORES' %}"><img src="{{reg.imagen.url}}" class="d-block w-100" alt="..." width="800px"
+                    height="500px"></a>
         </div>
         {% endfor %}
     </div>
@@ -70,7 +71,8 @@ Trabajos de la semana
     </button>
 </div>
 <br>
-<section class="container" style="background-color:#ffd859;color:#E33603; font-size: 20px; font-weight: bold;border: solid 5px #E33603; ">
+<section class="container"
+    style="background-color:#ffd859;color:#E33603; font-size: 20px; font-weight: bold;border: solid 5px #E33603; ">
     <h1 style="font-size: 28px;font-weight: bold;">
         Listado
     </h1>
@@ -90,6 +92,12 @@ Trabajos de la semana
             <td>{{reg.telefono}}</td>
         </tr>
         {% endfor %}
+        <tr>
+            <th>--</th>
+            <th>--</th>
+            <th>--</th>
+            <th>--</th>
+        </tr>
     </table>
 </section>
 
