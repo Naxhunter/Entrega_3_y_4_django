@@ -42,8 +42,8 @@ Trabajos anteriores
 {% block contenido %}
 <!-- añada el contenido personal de la página -->
 <div class="input-group" style="padding-bottom: 10px;">
-  <form action="{% url 'ANTERIORES' %}" method="POST" class="input-group" class="col">
-
+  <form action="{% url 'FILTRAR' %}" method="POST" class="input-group" class="col">
+  {% csrf_token %}
     <div>
       <!-- AQUI AGREGAR COMBOBOX -->
       <select class="form-select" aria-label="Default select example" name="cboCategoria" id="cboCategoria">
@@ -55,9 +55,9 @@ Trabajos anteriores
       <!-- Combo box-->
     </div>
     <!-- buscar por nombre -->
-    <input type="search" class="form-control rounded" placeholder="Buscar trabajador o especialidad de trabajo"
+    <input type="search" class="form-control rounded" placeholder="Buscar trabajador"
         aria-label="Search" aria-describedby="search-addon" />
-      <button type="button" class="btn btn-outline-primary">Buscar</button>
+    <button type="submit" class="btn btn-outline-primary">Buscar</button>
   </form>
 </div>
 
@@ -73,6 +73,17 @@ Trabajos anteriores
         <a href="{% url 'FICHATRABAJO' reg.correo %}">
           <img src="{{reg.imagen.url}}" class="category-banner img-responsive" width="400px" height="300px">
           <span class="imagebox-desc">Descripcion trabajo: {{reg.descripcion}}</span>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+
+    {% for reg in recepcion %}
+    <div class="col-sm-6" style="padding: 5px 5px 5px 5px;">
+      <div class="imagebox">
+        <a href="{% url 'FICHATRABAJO' reg.solicitudt.correo %}">
+          <img src="{{reg.solicitudt.imagen.url}}" class="category-banner img-responsive" width="400px" height="300px">
+          <span class="imagebox-desc">Descripcion trabajo: {{reg.solicitudt.descripcion}}</span>
         </a>
       </div>
     </div>

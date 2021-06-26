@@ -81,6 +81,17 @@ def anterior(request):
     categorias = categoria.objects.all()
     contexto = {"trabajo":solicitud,"categorias":categorias}
     return render(request, 'trabanterior.html',contexto)
+def filtrar_cate(request):
+    solicitud = solicitudtrabajo.objects.all()
+    categorias = categoria.objects.all()
+    recepciones = recepciontrabajo.objects.all()
+    if request.POST:
+        cate = request.POST.get("cboCategoria")
+        obj_categoria = categoria.objects.get(num_unico=cate)
+        recepciones = recepciontrabajo.objects.filter(categoria=obj_categoria)
+    contexto = {"categorias":categorias, "recepcion":recepciones}
+    return render(request, 'trabanterior.html',contexto)
+
 def frabajo(request, id):
     contexto={"solicitud":""}
     soli = solicitudtrabajo.objects.get(correo=id)
