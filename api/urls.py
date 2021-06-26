@@ -12,6 +12,7 @@ urlPatterns = [
     url(r'^api/soltrabbuscar/(?P<correo>.+)/$',views.SolTrabSearchViewSet.as_view()),
     #url(r'^api/trabuscar/(?P<nombre>.+)/$',views.TrabSearchViewSet.as_view()),
     url(r'^api/trabajador/$',views.TrabdorViewSet.as_view()),
+    url(r'^api/categorias/$',views.CateViewSet.as_view()),
 ]
 #La maquina reconoce ^ $
 urlpatterns=format_suffix_patterns(urlPatterns)

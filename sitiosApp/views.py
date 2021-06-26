@@ -76,11 +76,16 @@ def register(request):
         return render(request, 'register.html', contexto)
     return render(request, 'register.html')
 
+
 def anterior(request):
     solicitud = solicitudtrabajo.objects.all()
     categorias = categoria.objects.all()
     contexto = {"trabajo":solicitud,"categorias":categorias}
+    response = requests.get('http://127.0.0.1:8000/api/categorias/')
+    catapi = response.json()
+    contexto["catapi"]= catapi
     return render(request, 'trabanterior.html',contexto)
+
 def filtrar_cate(request):
     solicitud = solicitudtrabajo.objects.all()
     categorias = categoria.objects.all()
