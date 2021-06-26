@@ -41,16 +41,16 @@ Trabajos anteriores
 
 {% block contenido %}
 <!-- añada el contenido personal de la página -->
-<div class="input-group" style="padding-bottom: 10px;">
+<div class="input-group" style="padding: 10px 10px 10px 10px">
   <form action="{% url 'FILTRAR' %}" method="POST" class="input-group" class="col">
     {% csrf_token %}
-    <div>
+    <div ">
       <!-- AQUI AGREGAR COMBOBOX -->
-      <select class="form-select" aria-label="Default select example" name="cboCategoria" id="cboCategoria">
-        <option selected>Seleccione filtro</option>
-        {% for reg in categorias %}
-        <option value="{{reg.num_unico}}">{{reg.trabajo_cate}}</option>
-        {% endfor %}
+      <select class=" form-select" aria-label="Default select example" name="cboCategoria" id="cboCategoria">
+      <option selected>Seleccione filtro</option>
+      {% for reg in categorias %}
+      <option value="{{reg.num_unico}}">{{reg.trabajo_cate}}</option>
+      {% endfor %}
       </select>
       <!-- Combo box-->
     </div>
@@ -59,9 +59,11 @@ Trabajos anteriores
 
   <form action="{% url 'FILTRARN' %}" method="POST" class="input-group" class="col">
     {% csrf_token %}
-    <input type="search" class="form-control rounded" placeholder="Buscar trabajador" aria-label="Search"
-      aria-describedby="search-addon" name="txtNombre" id="txtNombre" /><button type="submit"
-      class="btn btn-outline-primary">Buscar</button>
+    <div style="margin-top: 3px;" class="input-group" class="col">
+      <input type="search" class="form-control rounded" placeholder="Buscar trabajador" aria-label="Search"
+        aria-describedby="search-addon" name="txtNombre" id="txtNombre" /><button type="submit"
+        class="btn btn-outline-primary">Buscar</button>
+    </div>
   </form>
 </div>
 <div class="container">
