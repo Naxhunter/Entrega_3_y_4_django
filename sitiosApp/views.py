@@ -86,13 +86,14 @@ def anterior(request):
     contexto["catapi"]= catapi
     return render(request, 'trabanterior.html',contexto)
 def filtrar_nombre(request):
+    categorias = categoria.objects.all()
     trabajadores = CategoriaUtrabajador.objects.all()
     recepciones = recepciontrabajo.objects.all()
     if request.POST:
         trabajador = request.POST.get("txtNombre")
         obj_trabajador = CategoriaUtrabajador.objects.get(nombre=trabajador)
         recepciones = recepciontrabajo.objects.filter(trabajador=obj_trabajador)
-    contexto = {"trabajadores":trabajadores,"recepciones":recepciones}
+    contexto = {"trabajadores":trabajadores,"recepciones":recepciones, "categorias":categorias}
     return render(request, 'trabanterior.html', contexto)
 def filtrar_cate(request):
     solicitud = solicitudtrabajo.objects.all()
