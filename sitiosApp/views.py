@@ -19,6 +19,9 @@ def base(request):
 def sol_ayu(request):
     solicitud = solicitudayuda.objects.all()
     contexto = {"ayuda":solicitud}
+    response = requests.get('http://127.0.0.1:8000/api/solayuda/')
+    solaapi = response.json()
+    contexto["solaapi"] = solaapi
     return render(request, 'sol_ayu.html',contexto)
 def mot_rec(request):
     return render(request, 'mot_rec.html')
@@ -141,6 +144,9 @@ def register_work(request):
 def sol_tra(request):
     solicitud = solicitudtrabajo.objects.all()
     contexto = {"trabajo":solicitud}
+    response = requests.get('http://127.0.0.1:8000/api/solitrab/')
+    soltapi = response.json()
+    contexto["soltapi"] = soltapi
     return render(request, 'sol_tra.html', contexto)
 def mot_rec_tr(request):
     return render(request, 'mot_rec_tr.html')

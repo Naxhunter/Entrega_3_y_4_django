@@ -28,7 +28,7 @@ Solicitudes de Ayuda
 {% endblock titulo %}
 
 {% block contenido %}
-<!-- añada el contenido personal de la página -->
+<!-- añada el contenido personal de la página 
 
 <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
@@ -113,6 +113,85 @@ Solicitudes de Ayuda
         </tbody>
     </table>
 
+</div>-->
+<div class="table-wrapper-scroll-y">
+    <section class="container">
+        <br>
+        <table class="container"
+            style="background-color:#ffd859;color:#E33603; font-size: 20px; font-weight: bold; margin-left: -115px; border:4px solid #E33603">
+            <tr>
+                <td colspan="6">
+                    <h1 style="font-size: 28px;font-weight: bold;">
+                        Solicitudes de ayuda
+                    </h1>
+                </td>
+            </tr>
+            <tr style="background-color:#E33603;color: #ffd859;">
+                <td>Correo</td>
+                <td>Teléfono</td>
+                <td>Descripción</td>
+                <td>Imágenes</td>
+                <td>Aceptar</td>
+                <td>Rechazar</td>
+
+            </tr>
+            {% for reg in solaapi %}
+            <tr>
+                <td>{{reg.correo}}</td>
+                <td>{{reg.telefono}}</td>
+                <td>{{reg.descripcion}}</td>
+                <td>
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="{% static 'img/icon_emp.png' %}" class="d-block w-100" alt="..." width="auto"
+                                    height="auto">
+                            </div>
+                            {% for reg in ayuda %}
+                            <div class="carousel-item">
+                                <img src="{{reg.imagen.url}}" class="d-block w-100" alt="..." width="auto"
+                                    height="auto">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </td>
+                <td>
+                    <form action="">
+                        {% csrf_token %}
+                        <div class="container" style="padding:15px 5px 15px 5px;">
+                            <a href="#" style="margin: 100px 100px 100px 100px;">
+
+                                <button type="button" class="btn btn-dark">Aceptar</button></a>
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <a href="{% url 'MOTREC' %}" style="margin: 100px 100px 100px 100px;">
+                        <button type="button" class="btn btn-dark">Rechazar</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th>--</th>
+                <th>--</th>
+                <th>--</th>
+                <th>--</th>
+                <th>--</th>
+                <th>--</th>
+            </tr>
+        </table>
+    </section>
 </div>
 {% endblock contenido %}
 
