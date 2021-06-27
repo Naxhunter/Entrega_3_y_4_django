@@ -200,10 +200,28 @@ def sol_ser(request):
 def admini(request):
     return render(request, 'admin.html')
 # Create your views here.
+@login_required(login_url='/LOGIN')
 def eliminar(request, id):
     try:
         borrar = solicitudtrabajo.objects.get(correo=id)
         borrar.delete()
         mensaje = "Solicitud eliminada."
+        solicitud = solicitudtrabajo.objects.all()
+        contexto = {"trabajo":solicitud,"elimino":mensaje}
+        response = requests.get('http://127.0.0.1:8000/api/solitrab/')
+        soltapi = response.json()
+        contexto["soltapi"] = soltapi
     except:
         mensaje = "No elimino."
+        solicitud = solicitudtrabajo.objects.all()
+        contexto = {"trabajo":solicitud,"elimino":mensaje}
+        response = requests.get('http://127.0.0.1:8000/api/solitrab/')
+        soltapi = response.json()
+        contexto["soltapi"] = soltapi
+    return render(request, 'sol_tra.html', contexto)
+@login_required(login_url='/LOGIN')
+def publica(request, id):
+    return render(request)
+@login_required(login_url='/LOGIN')
+def modificar(request, id):
+    return render(request)

@@ -21,4 +21,7 @@ urlpatterns = [
     path('SALIR', salir, name="SALIR"),
     path('FILTRAR', filtrar_cate, name="FILTRAR"),
     path('FITRARN', filtrar_nombre, name="FILTRARN"),
+    path('ELIMINAR/<id>/',eliminar, name='ELIMINAR'),
+    path('PUBLICA/<id>/',publica, name='PUBLICA'),
+    path('MODIFICAR/<id>/',modificar, name='MODIFICAR'),
 ]

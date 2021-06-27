@@ -167,32 +167,29 @@ Solicitudes de Trabajo
                         </div>
                 </td>
                 <td>
-                    <form action="">
+                    <form action="{% url 'PUBLICA' trabajo %}" method="POST">
                         {% csrf_token %}
-                        <div class="container" style="padding:0px 0px 0px 0px;">
-                            <a href="#" style="margin: 25px 25px 25px 25px;">
+                        <div class="container" style="padding:0px 0px 0px 0px;margin: 25px 25px 25px 25px;">
 
-                                <button type="button" class="btn btn-dark">Aceptar</button></a>
+                                <button type="submit" class="btn btn-dark">Aceptar</button>
                         </div>
                     </form>
                 </td>
                 <td>
-                    <form action="">
+                    <form action="{% url 'ELIMINAR' reg.correo %}" method="POST">
                         {% csrf_token %}
-                        <div class="container" style="padding:0px 0px 0px 0px;">
-                            <a href="#" style="margin: 25px 25px 25px 25px;">
-
-                                <button type="button" class="btn btn-dark">Eliminar</button></a>
+                        <div class="container" style="padding:0px 0px 0px 0px;margin: 25px 25px 25px 25px;">
+                                <button type="submit" class="btn btn-dark">Eliminar</button>
                         </div>
                     </form>
                 </td>
                 <td>
-                    <form action="">
+                    <form action="{% url 'MODIFICAR' trabajo %}" method="POST">
                         {% csrf_token %}
-                        <div class="container" style="padding:0px 0px 0px 0px;">
-                            <a href="#" style="margin: 25px 25px 25px 25px;">
+                        <div class="container" style="padding:0px 0px 0px 0px;margin: 25px 25px 25px 25px;">
+                            
 
-                                <button type="button" class="btn btn-dark">Modificar</button></a>
+                                <button type="submit" class="btn btn-dark">Modificar</button>
                         </div>
                     </form>
                 </td>
