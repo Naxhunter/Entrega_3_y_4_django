@@ -98,15 +98,22 @@
     <ul class="list-group"
         style="width: 60%; z-index: 2; margin-top: -300px; margin-left: 200px; height: auto; margin-top: -230px; border:solid 1px black;">
         {% if not mantencion %}
-        <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
-            <p>Correo: </p> {{user.username}}
-        </li>
-        <li class="list-group-item" style="width: 100%; height: auto; background-color: #ffd859;">
-            <p>Nro Servicio:</p>Dapibus ac facilisis in
-        </li>
-        <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
-            <p>Descripción:</p>Porta ac consectetur ac
-        </li>
+            <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
+                <p>Correo: </p> {{user.username}}
+            </li>
+            {% if not servicios %}
+            <li class="list-group-item" style="width: 100%; height: auto; background-color: #ffd859;">
+                <p>Servicios solicitados:</p> No registra servicios con su email.
+            </li>
+            {% else %}
+            <li class="list-group-item" style="width: 100%; height: auto; background-color: #ffd859;">
+                <p>Servicios solicitados:</p> {{servicios}}
+            </li>
+            
+            {% endif %}
+            <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
+                <p>Descripción:</p>Porta ac consectetur ac
+            </li>
         
         {% else %}
          <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
@@ -115,9 +122,11 @@
         <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
             <p>Mantenciones:</p>{{mantencion}}
         </li>
+        {% for reg in especial %}
         <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
-            <p>Descripción:</p>Porta ac consectetur ac
+            <p>Especialidad:</p>{{reg.especialidad}}
         </li>
+        {% endfor %}
         {% endif %}
     </ul>
     <br>

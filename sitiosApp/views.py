@@ -121,10 +121,12 @@ def frabajo(request, id):
 def cuenta(request):
     user = User.objects.get(username=request.user.username)
     #rut = User.objects.get(last_name=request.user.last_name)
-    #email = User.objects.get(first_name=request.user.first_name)
+    #nombre = User.objects.get(first_name=request.user.first_name)
     mantenciones = recepciontrabajo.objects.filter(trabajador=request.user.last_name).count()
+    especialidad = CategoriaUtrabajador.objects.filter(email=request.user.username)
+    serv_sol = solicitudtrabajo.objects.filter(correo=request.user.username).count()
     imagen_poner = perfilusuario.objects.filter(nombre_perf=user)
-    contexto = {"imagenp":imagen_poner, "mantencion":mantenciones}
+    contexto = {"imagenp":imagen_poner, "mantencion":mantenciones,"servicios":serv_sol, "especial":especialidad}
     #contexto = {"imagenp":imagen_poner}
     if request.POST:
         imagen = request.FILES.get("txtFile")
@@ -133,7 +135,7 @@ def cuenta(request):
         imagen = imagen
         )
         imagen_poner = perfilusuario.objects.filter(nombre_perf=user)
-        contexto = {"mensaje":"imagen subida con éxito","imagenp":imagen_poner,"mantencion":mantenciones}
+        contexto = {"mensaje":"imagen subida con éxito","imagenp":imagen_poner,"mantencion":mantenciones,"servicios":serv_sol, "especialidad":especialidad}
         #contexto = {"mensaje":"imagen subida con éxito","imagenp":imagen_poner}
         perfil_u.save()
 
