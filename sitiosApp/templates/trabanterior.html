@@ -44,13 +44,13 @@ Trabajos anteriores
 <div class="input-group" style="padding: 10px 10px 10px 10px">
   <form action="{% url 'FILTRAR' %}" method="POST" class="input-group" class="col">
     {% csrf_token %}
-    <div ">
+    <div>
       <!-- AQUI AGREGAR COMBOBOX -->
       <select class=" form-select" aria-label="Default select example" name="cboCategoria" id="cboCategoria">
-      <option selected>Seleccione filtro</option>
-      {% for reg in categorias %}
-      <option value="{{reg.num_unico}}">{{reg.trabajo_cate}}</option>
-      {% endfor %}
+        <option selected>Seleccione filtro</option>
+        {% for reg in categorias %}
+        <option value="{{reg.num_unico}}">{{reg.trabajo_cate}}</option>
+        {% endfor %}
       </select>
       <!-- Combo box-->
     </div>
@@ -107,6 +107,24 @@ Trabajos anteriores
   </div>
 </div>
 <br>
+<div class="container"
+  style="background-color:#ffd859;color:#E33603; font-size: 20px; font-weight: bold;border: solid 5px #E33603; text-align:center; ">
+  <center>
+    <h1>Cantidades:</h1>
+    <table style="text-align: center; padding: 5px 5px 5px 5px; width:100%;">
+      <tr style="background-color:#E33603;color: #ffd859;">
+        <th style="text-align: center; padding: 5px 5px 5px 5px;">Cantidad Categorias</th>
+        <th style="text-align: center; padding: 5px 5px 5px 5px;">Cantidad Solicitudes</th>
+      </tr>
+      <tr>
+        <td style="text-align: center; padding: 5px 5px 5px 5px;">{{cantc}}</td>
+        <td style="text-align: center; padding: 5px 5px 5px 5px;">{{cants}}</td>
+      </tr>
+    </table>
+  </center>
+
+</div>
+<br>
 <section class="container"
   style="background-color:#ffd859;color:#E33603; font-size: 20px; font-weight: bold;border: solid 5px #E33603; text-align:center; ">
   <h1 style="font-size: 28px;font-weight: bold;">
@@ -130,6 +148,7 @@ Trabajos anteriores
     </tr>
   </table>
 </section>
+
 
 {% endblock contenido %}
 

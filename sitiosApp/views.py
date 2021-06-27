@@ -84,7 +84,9 @@ def register(request):
 def anterior(request):
     solicitud = solicitudtrabajo.objects.filter(publicar=True)
     categorias = categoria.objects.all()
-    contexto = {"trabajo":solicitud,"categorias":categorias}
+    cantidad_s = solicitudtrabajo.objects.filter(publicar=True).count()
+    cantidad_c = categoria.objects.all().count()
+    contexto = {"trabajo":solicitud,"categorias":categorias,"cants":cantidad_s,"cantc":cantidad_c}
     response = requests.get('http://127.0.0.1:8000/api/categorias/')
     catapi = response.json()
     contexto["catapi"]= catapi
