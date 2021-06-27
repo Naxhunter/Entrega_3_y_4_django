@@ -22,6 +22,7 @@ class solicitudtrabajo(models.Model):
     telefono=models.IntegerField()
     descripcion=models.TextField(max_length=350)
     imagen=models.ImageField(upload_to='solitudest', null=True)
+    publicar = models.BooleanField(default=False)
     def __str__(self):
         return self.correo
 class solicitudayuda(models.Model):
