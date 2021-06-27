@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 #Gestion peticiones HTTP
 import requests
 def inicio(request):
-    solicitud = solicitudtrabajo.objects.all()
+    solicitud = solicitudtrabajo.objects.filter(publicar=True)
     contexto = {"trabajo":solicitud}
 #Consumo de API api/trabuscar
     response = requests.get('http://127.0.0.1:8000/api/trabajador/')
@@ -59,7 +59,7 @@ def login(request):
 @login_required(login_url='/LOGIN')
 def salir(request):
     logout(request)
-    solicitud = solicitudtrabajo.objects.all()
+    solicitud = solicitudtrabajo.objects.filter(publicar=True)
     contexto = {"trabajo":solicitud}
     return render(request, 'index.html', contexto)
 def register(request):
