@@ -120,8 +120,12 @@ def frabajo(request, id):
 @login_required(login_url='/LOGIN')
 def cuenta(request):
     user = User.objects.get(username=request.user.username)
+    #rut = User.objects.get(last_name=request.user.last_name)
+    #email = User.objects.get(first_name=request.user.first_name)
+    mantenciones = recepciontrabajo.objects.filter(trabajador=request.user.last_name).count()
     imagen_poner = perfilusuario.objects.filter(nombre_perf=user)
-    contexto = {"imagenp":imagen_poner}
+    contexto = {"imagenp":imagen_poner, "mantencion":mantenciones}
+    #contexto = {"imagenp":imagen_poner}
     if request.POST:
         imagen = request.FILES.get("txtFile")
         perfil_u = perfilusuario(
@@ -129,7 +133,8 @@ def cuenta(request):
         imagen = imagen
         )
         imagen_poner = perfilusuario.objects.filter(nombre_perf=user)
-        contexto = {"mensaje":"imagen subida con éxito","imagenp":imagen_poner}
+        contexto = {"mensaje":"imagen subida con éxito","imagenp":imagen_poner,"mantencion":mantenciones}
+        #contexto = {"mensaje":"imagen subida con éxito","imagenp":imagen_poner}
         perfil_u.save()
 
     return render(request, 'cuenta.html', contexto)
@@ -153,6 +158,7 @@ def register_work(request):
         nuevo_usuario.username = email
         nuevo_usuario.set_password(passw)
         nuevo_usuario.first_name = nombre
+        nuevo_usuario.last_name = rut
         nuevo_usuario.save()
         contexto ={"mensaje":"Registrado con exito"}
         usuario.save()

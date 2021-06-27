@@ -97,6 +97,7 @@
     {% endif %}
     <ul class="list-group"
         style="width: 60%; z-index: 2; margin-top: -300px; margin-left: 200px; height: auto; margin-top: -230px; border:solid 1px black;">
+        {% if not mantencion %}
         <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
             <p>Correo: </p> {{user.username}}
         </li>
@@ -104,11 +105,20 @@
             <p>Nro Servicio:</p>Dapibus ac facilisis in
         </li>
         <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
-            <p>Mantenciones:</p>Morbi leo risus
+            <p>Descripción:</p>Porta ac consectetur ac
+        </li>
+        
+        {% else %}
+         <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
+            <p>Correo: </p> {{user.username}}
+        </li>
+        <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
+            <p>Mantenciones:</p>{{mantencion}}
         </li>
         <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
             <p>Descripción:</p>Porta ac consectetur ac
         </li>
+        {% endif %}
     </ul>
     <br>
     <div class="container">
