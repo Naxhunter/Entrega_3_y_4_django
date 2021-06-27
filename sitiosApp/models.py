@@ -7,6 +7,7 @@ class CategoriaUnormal(models.Model):
     email= models.CharField(primary_key=True, max_length=30)
     nombre= models.CharField(max_length=30)
     contrasena= models.CharField(max_length=30)
+    descripcion = models.CharField(max_length=100, null=True)
     def __str__(self):
         return self.nombre
 class CategoriaUtrabajador(models.Model):

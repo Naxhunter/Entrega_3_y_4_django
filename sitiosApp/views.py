@@ -67,10 +67,12 @@ def register(request):
         nombre = request.POST.get('txtNombre')
         email = request.POST.get('txtEmail')
         passw = request.POST.get('txtPasslog')
+        desc = request.POST.get('txtDesc')
         usuario = CategoriaUnormal(
             nombre= nombre,
             email= email,
-            contrasena= passw
+            contrasena= passw,
+            descripcion = desc
         )
         contexto ={"mensaje":"Registrado con exito"}
         usuario.save()
@@ -126,7 +128,8 @@ def cuenta(request):
     especialidad = CategoriaUtrabajador.objects.filter(email=request.user.username)
     serv_sol = solicitudtrabajo.objects.filter(correo=request.user.username).count()
     imagen_poner = perfilusuario.objects.filter(nombre_perf=user)
-    contexto = {"imagenp":imagen_poner, "mantencion":mantenciones,"servicios":serv_sol, "especial":especialidad}
+    descripcion = CategoriaUnormal.objects.filter(email=request.user.username)
+    contexto = {"imagenp":imagen_poner, "mantencion":mantenciones,"servicios":serv_sol, "especial":especialidad, "descri":descripcion}
     #contexto = {"imagenp":imagen_poner}
     if request.POST:
         imagen = request.FILES.get("txtFile")
@@ -135,7 +138,7 @@ def cuenta(request):
         imagen = imagen
         )
         imagen_poner = perfilusuario.objects.filter(nombre_perf=user)
-        contexto = {"mensaje":"imagen subida con éxito","imagenp":imagen_poner,"mantencion":mantenciones,"servicios":serv_sol, "especialidad":especialidad}
+        contexto = {"mensaje":"imagen subida con éxito","imagenp":imagen_poner,"mantencion":mantenciones,"servicios":serv_sol, "especialidad":especialidad, "descri":descripcion}
         #contexto = {"mensaje":"imagen subida con éxito","imagenp":imagen_poner}
         perfil_u.save()
 

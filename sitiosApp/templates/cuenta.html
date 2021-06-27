@@ -111,10 +111,12 @@
             </li>
             
             {% endif %}
+            
+        {% for reg in descri %}
             <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
-                <p>Descripción:</p>Porta ac consectetur ac
+                <p>Descripción:</p>{{reg.descripcion}}
             </li>
-        
+        {% endfor %}
         {% else %}
          <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
             <p>Correo: </p> {{user.username}}
