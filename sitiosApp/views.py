@@ -200,3 +200,10 @@ def sol_ser(request):
 def admini(request):
     return render(request, 'admin.html')
 # Create your views here.
+def eliminar(request, id):
+    try:
+        borrar = solicitudtrabajo.objects.get(correo=id)
+        borrar.delete()
+        mensaje = "Solicitud eliminada."
+    except:
+        mensaje = "No elimino."
