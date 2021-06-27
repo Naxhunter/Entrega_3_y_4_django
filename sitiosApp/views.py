@@ -16,6 +16,7 @@ def inicio(request):
     return render(request, 'index.html', contexto)
 def base(request):
     return render(request, 'base.html')
+@login_required(login_url='/LOGIN')
 def sol_ayu(request):
     solicitud = solicitudayuda.objects.all()
     contexto = {"ayuda":solicitud}
@@ -23,6 +24,7 @@ def sol_ayu(request):
     solaapi = response.json()
     contexto["solaapi"] = solaapi
     return render(request, 'sol_ayu.html',contexto)
+@login_required(login_url='/LOGIN')
 def mot_rec(request):
     return render(request, 'mot_rec.html')
 def ayuda(request):
@@ -54,6 +56,7 @@ def login(request):
             return render(request, 'login.html', contexto)
 
     return render(request, 'login.html')
+@login_required(login_url='/LOGIN')
 def salir(request):
     logout(request)
     solicitud = solicitudtrabajo.objects.all()
@@ -110,10 +113,9 @@ def frabajo(request, id):
     contexto={"solicitud":""}
     soli = solicitudtrabajo.objects.get(correo=id)
     atencion = recepciontrabajo.objects.get(solicitudt=soli)
-    #if(atencion.solicitudt==soli.correo):
-     #   contexto = {"solicitud":soli,"ate":atencion}*/
     contexto = {"solicitud":soli,"ate":atencion}
     return render(request, 'ficha_trabajo.html', contexto)
+@login_required(login_url='/LOGIN')
 def cuenta(request):
     return render(request, 'cuenta.html')
 def register_work(request):
@@ -141,6 +143,7 @@ def register_work(request):
         usuario.save()
         return render(request, 'register_work.html', contexto)
     return render(request, 'register_work.html')
+@login_required(login_url='/LOGIN')
 def sol_tra(request):
     solicitud = solicitudtrabajo.objects.all()
     contexto = {"trabajo":solicitud}
@@ -148,6 +151,7 @@ def sol_tra(request):
     soltapi = response.json()
     contexto["soltapi"] = soltapi
     return render(request, 'sol_tra.html', contexto)
+@login_required(login_url='/LOGIN')
 def mot_rec_tr(request):
     return render(request, 'mot_rec_tr.html')
 def sol_ser(request):
@@ -166,6 +170,7 @@ def sol_ser(request):
         solicitud.save()
         return render(request,"sol_ser.html", contexto)
     return render(request, 'sol_ser.html')
+@login_required(login_url='/LOGIN')
 def admini(request):
     return render(request, 'admin.html')
 # Create your views here.
