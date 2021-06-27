@@ -43,12 +43,15 @@ Trabajos de la semana
 
 </div>
 
-<form action="">
-    <div class="md-form active-pink active-pink-2 mb-3 mt-0">
-        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+<form action="{% url 'FILTRARN' %}" method="POST" class="input-group" class="col">
+    {% csrf_token %}
+    <div style="margin-top: 3px;" class="input-group" class="col">
+      <input type="search" class="form-control rounded" placeholder="Buscar trabajador" aria-label="Search"
+        aria-describedby="search-addon" name="txtNombre" id="txtNombre" /><button type="submit"
+        class="btn btn-outline-primary">Buscar</button>
     </div>
 </form>
-
+<br>
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
