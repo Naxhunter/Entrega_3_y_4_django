@@ -65,20 +65,40 @@
 
 {% block contenido %}
 <!-- añada el contenido personal de la página -->
+
 <div class="container">
 
+    {% if not imagenp %}
+    
     <div class="container">
         <div class="d-flex h-100">
             <div class="image_outer_container">
                 <div class="green_icon"></div>
                 <div class="image_inner_container">
-                    <img src="{%static 'img/controls.png'%}">
+                    <img src="{%static 'img/icon_user.png'%}">
+                    <!--<img src="{{reg.imagenp.url}}'">-->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% else %}
+    {% for reg in imagenp %}
+    <div class="container">
+        <div class="d-flex h-100">
+            <div class="image_outer_container">
+                <div class="green_icon"></div>
+                <div class="image_inner_container">
+                    <!--<img src="{%static 'img/icon_user.png'%}">-->
+                    <!--<img src="{{reg.imagenp.url}}'">-->
+                    <img src="{{reg.imagen.url}}">
                 </div>
             </div>
         </div>
 
     </div>
-
+    {% endfor %}
+    {% endif %}
     <ul class="list-group"
         style="width: 60%; z-index: 2; margin-top: -300px; margin-left: 200px; height: auto; margin-top: -230px; border:solid 1px black;">
         <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
@@ -96,7 +116,14 @@
     </ul>
     <br>
     <div class="container">
-        <form action="">
+        <form action="{%url 'CUENTA' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="txtFile" style="color:#ffd859; font-size: 20px; font-weight: bold;">Ingrese
+                    Imagen</label><br>
+                <input type="file" class="form-control-file" id="txtFile" name="txtFile">
+            </div>
+            <br>
             <div clas="form-group" style="">
                 <button type="submit" class="btn btn-dark">Subir imagen</button>
             </div>
@@ -104,7 +131,7 @@
         <br>
         <div clas="form-group" style="">
             <a href="{%url 'ADM'%}">
-                <button type="submit" class="btn btn-dark">Administrar</button>
+                <button type="button" class="btn btn-dark">Administrar</button>
             </a>
         </div>
     </div>

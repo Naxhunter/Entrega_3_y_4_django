@@ -119,7 +119,20 @@ def frabajo(request, id):
     return render(request, 'ficha_trabajo.html', contexto)
 @login_required(login_url='/LOGIN')
 def cuenta(request):
-    return render(request, 'cuenta.html')
+    user = User.objects.get(username=request.user.username)
+    imagen_poner = perfilusuario.objects.filter(nombre_perf=user)
+    contexto = {"imagenp":imagen_poner}
+    if request.POST:
+        imagen = request.FILES.get("txtFile")
+        perfil_u = perfilusuario(
+        nombre_perf = user,
+        imagen = imagen
+        )
+        imagen_poner = perfilusuario.objects.filter(nombre_perf=user)
+        contexto = {"mensaje":"imagen subida con éxito","imagenp":imagen_poner}
+        perfil_u.save()
+
+    return render(request, 'cuenta.html', contexto)
 def register_work(request):
     if(request.POST):
         rut = request.POST.get('txtRut')

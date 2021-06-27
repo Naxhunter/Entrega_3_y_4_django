@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.fields.related import ForeignKey
+from django.contrib.auth.models import User
 
 # Create your models here.
 class CategoriaUnormal(models.Model):
@@ -48,4 +49,6 @@ class recepciontrabajo(models.Model):
     categoria = models.ForeignKey(categoria, on_delete=models.CASCADE)
     def __str__(self):
         return self.fecha
-
+class perfilusuario(models.Model):
+    nombre_perf=models.CharField(primary_key=True, max_length=30)
+    imagen=models.ImageField(upload_to='imgperfil', null=True)
