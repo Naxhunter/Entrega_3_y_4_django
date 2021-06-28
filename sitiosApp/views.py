@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from requests.sessions import Request
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout, login as login_aut
@@ -177,9 +178,6 @@ def sol_tra(request):
     soltapi = response.json()
     contexto["soltapi"] = soltapi
     return render(request, 'sol_tra.html', contexto)
-@login_required(login_url='/LOGIN')
-def mot_rec_tr(request):
-    return render(request, 'mot_rec_tr.html')
 def sol_ser(request):
     if(request.POST):
         correo = request.POST.get("txtEmail")
@@ -225,3 +223,11 @@ def publica(request, id):
 @login_required(login_url='/LOGIN')
 def modificar(request, id):
     return render(request)
+
+@login_required(login_url='/LOGIN')
+def mot_rec_tr(request):#, id):
+    #if request.POST:
+    #    actualizar = solicitudtrabajo.objects.get(correo=id)
+    #    comentario_r = request.POST.get('exampleFormControlTextarea1')
+    #    solicitudtrabajo.objects.get(correo=actualizar).update(comentario=comentario_r)
+    return render(request, 'mot_rec_tr.html')

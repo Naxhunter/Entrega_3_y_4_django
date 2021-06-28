@@ -25,6 +25,7 @@ class solicitudtrabajo(models.Model):
     descripcion=models.TextField(max_length=350)
     imagen=models.ImageField(upload_to='solitudest', null=True)
     publicar = models.BooleanField(default=False)
+    comentario = models.TextField(default="--")
     def __str__(self):
         return self.correo
 class solicitudayuda(models.Model):
