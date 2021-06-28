@@ -28,7 +28,7 @@ Solicitudes de Trabajo
 {% endblock titulo %}
 
 {% block contenido %}
-
+{% if request.user.is_superuser %}
 <div class="table-wrapper-scroll-y">
     <section class="container" style="width: 1500px; margin-left: -30px;">
         <br>
@@ -143,6 +143,105 @@ Solicitudes de Trabajo
         </table>
     </section>
 </div>
+{% else %}
+<div class="table-wrapper-scroll-y">
+    <section class="container" style="width: 1500px; margin-left: -30px;">
+        <br>
+        <table class="container"
+            style="background-color:#ffd859;color:#E33603; font-size: 20px; font-weight: bold; margin-left: -130px; border:4px solid #E33603;width:100%;">
+            <tr>
+                <td colspan="8">
+                    <h1 style="font-size: 28px;font-weight: bold;">
+                        Solicitudes de trabajo
+                    </h1>
+                </td>
+            </tr>
+            <tr style="background-color:#E33603;color: #ffd859;">
+                <td>Correo</td>
+                <td>Teléfono</td>
+                <td>Descripción</td>
+                <td>Imágenes</td>
+                <td>Eliminar</td>
+                <td>Modificar</td>
+                <td>Estado</td>
+                <td>Comentario</td>
+
+            </tr>
+            {% for reg in soltapi %}
+            <tr>
+                <td style="font-size: 15px;">{{reg.correo}}</td>
+                <td style="font-size: 15px;">{{reg.telefono}}</td>
+                <td style="font-size: 8px;">{{reg.descripcion}}</td>
+                <td>
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+
+                            <div class="carousel-item active">
+                                <img src="{{reg.imagen}}" class="d-block w-100" alt="..." width="auto" height="auto">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </td>
+                
+                <td>
+                    <form action="{% url 'ELIMINAR' reg.correo %}" method="POST">
+                        {% csrf_token %}
+                        <div class="container" style="padding:0px 0px 0px 0px;margin: 25px 25px 25px 25px; width:40px;">
+                            <button type="submit" class="btn btn-dark">Eliminar</button>
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <form action="{% url 'MODIFICAR' reg.correo %}" method="POST">
+                        {% csrf_token %}
+                        <div class="container" style="padding:0px 0px 0px 0px;margin: 25px 25px 25px 25px; width:40px;">
+
+
+                            <button type="submit" class="btn btn-dark">Modificar</button>
+                        </div>
+                    </form>
+                </td>
+                
+                <td style="font-size: 10px;">
+                    {% if reg.publicar %}
+                    <p style="color:rgba(253, 253, 253, 0.842)">Aceptado</p>
+
+
+                    {% else %}
+                    <p style="color:rgba(223, 19, 63, 0.842)">Rechazado</p>
+
+                    {% endif %}
+                </td>
+                <td style="font-size: 15px;">
+                    {{reg.comentario}}
+                </td>
+
+            </tr>
+            {% endfor %}
+            <tr>
+                <th>--</th>
+                <th>--</th>
+                <th>--</th>
+                <th>--</th>
+                <th>--</th>
+                <th>--</th>
+                <th>--</th>
+                <th>--</th>
+            </tr>
+        </table>
+    </section>
+</div>
+{% endif %}
 {% endblock contenido %}
 
 {% block js %}

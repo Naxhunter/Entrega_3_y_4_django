@@ -36,6 +36,7 @@ Administrar
         <br>
         <span style="color:#806c17; font-weight: bold;">Solicitud Trabajo</span>
     </div>
+    {% if request.user.is_superuser %}
     <div style="display: inline-block;padding: 3px 3px 3px 3px;justify-content: center; border: 5px solid #806c17;">
         <a href="{%url 'REGWORK'%}">
             <img src="{% static 'img/icon_emp.png'%}" class="img-fluid" alt="Eniun" style="width: 250px; height: 250px;">
@@ -44,7 +45,7 @@ Administrar
         <br>
         <span style="color:#806c17; font-weight: bold;">Registrar Trabajador</span>
     </div>
-
+    {% endif %}
 
 
 

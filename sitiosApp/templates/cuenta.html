@@ -133,6 +133,8 @@
     </ul>
     <br>
     <div class="container">
+        <br>
+        {% if request.user.is_superuser %}
         <form action="{%url 'CUENTA' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
@@ -151,8 +153,40 @@
                 <button type="button" class="btn btn-dark">Administrar</button>
             </a>
         </div>
+        {% elif not mantencion %}
+        <form action="{%url 'CUENTA' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="txtFile" style="color:#ffd859; font-size: 20px; font-weight: bold;">Ingrese
+                    Imagen</label><br>
+                <input type="file" class="form-control-file" id="txtFile" name="txtFile">
+            </div>
+            <br>
+            <div clas="form-group" style="">
+                <button type="submit" class="btn btn-dark">Subir imagen</button>
+            </div>
+        </form>
+        {% else %}
+        <form action="{%url 'CUENTA' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="txtFile" style="color:#ffd859; font-size: 20px; font-weight: bold;">Ingrese
+                    Imagen</label><br>
+                <input type="file" class="form-control-file" id="txtFile" name="txtFile">
+            </div>
+            <br>
+            <div clas="form-group" style="">
+                <button type="submit" class="btn btn-dark">Subir imagen</button>
+            </div>
+        </form>
+        <br>
+        <div clas="form-group" style="">
+            <a href="{%url 'ADM'%}">
+                <button type="button" class="btn btn-dark">Administrar</button>
+            </a>
+        </div>
+        {% endif %}
     </div>
-
 </div>
 
 

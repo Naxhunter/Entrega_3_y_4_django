@@ -27,7 +27,7 @@ class solicitudtrabajo(models.Model):
     publicar = models.BooleanField(default=False)
     comentario = models.TextField(default="--")
     def __str__(self):
-        return self.correo+" "+str(self.publicar)+" / "+self.comentario
+        return self.correo+" "+str(self.publicar)+" "+self.comentario
 class solicitudayuda(models.Model):
     correo=models.CharField(primary_key=True, max_length=30)
     telefono=models.IntegerField()
@@ -55,4 +55,4 @@ class recepciontrabajo(models.Model):
         return self.fecha
 class perfilusuario(models.Model):
     nombre_perf=models.CharField(primary_key=True, max_length=30)
-    imagen=models.ImageField(upload_to='imgperfil', null=True)
+    imagen=models.ImageField(upload_to='imgperfil', null=True)#default static image para el bug
