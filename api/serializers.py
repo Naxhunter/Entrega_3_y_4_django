@@ -9,7 +9,7 @@ from rest_framework import serializers
 class SolTrabSerializers(serializers.ModelSerializer):
     class Meta:
         model = solicitudtrabajo #modelo a serializar
-        fields = ["correo","telefono","descripcion","imagen"] #campos
+        fields = ["correo","telefono","descripcion","imagen","publicar","comentario"] #campos
 #Trabajadores
 class TrabSerializers(serializers.ModelSerializer):
     class Meta:
