@@ -27,7 +27,7 @@ class solicitudtrabajo(models.Model):
     publicar = models.BooleanField(default=False)
     comentario = models.TextField(default="--")
     def __str__(self):
-        return self.correo
+        return self.correo+" "+str(self.publicar)
 class solicitudayuda(models.Model):
     correo=models.CharField(primary_key=True, max_length=30)
     telefono=models.IntegerField()
@@ -36,7 +36,7 @@ class solicitudayuda(models.Model):
     revisado = models.BooleanField(default=False)
     comentario = models.TextField(default="--")
     def __str__(self):
-        return self.correo
+        return self.correo+" "+str(self.revisado)
 class categoria(models.Model):
     num_unico=models.IntegerField(primary_key=True)
     trabajo_cate=models.CharField(max_length=150)
