@@ -83,9 +83,11 @@ Modificar solicitud de trabajo
 
     
     {% if not modifi %}
-    <a href="{% url 'SOLTRA' %}"><button type="button" class="btn btn-primary">Volver a solicitudes</button></a>
+    <div class="form-group">
+    <a href="{% url 'SOLTRA' %}"><button type="button" class="btn btn-primary">Volver a solicitudes</button></a></div>
     {% else %}
-    <button type="submit" class="btn btn-primary">Modificar solicitud</button>
+    <div class="form-group">
+    <button type="submit" class="btn btn-primary">Modificar solicitud</button></div>
     {% endif %}
 </form>
 {% endblock contenido %}

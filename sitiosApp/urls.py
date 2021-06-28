@@ -15,7 +15,7 @@ urlpatterns = [
     path('CUENTA', cuenta, name='CUENTA'),
     path('REGWORK',register_work, name='REGWORK'),
     path('SOLTRA',sol_tra, name='SOLTRA'),
-    path('MTTR',mot_rec_tr, name='MTTR'),
+    path('MTTR/<id>',mot_rec_tr, name='MTTR'),
     path('SOLSER',sol_ser,name="SOLSER"),
     path('ADM',admini,name="ADM"),
     path('SALIR', salir, name="SALIR"),
@@ -25,4 +25,5 @@ urlpatterns = [
     path('PUBLICA/<id>/',publica, name='PUBLICA'),
     path('MODIFICAR/<id>/',modificar, name='MODIFICAR'),
     path('MODIF', modif_sol, name="MODIF"),
+    path('COMREC',comrec, name="COMREC"),
 ]

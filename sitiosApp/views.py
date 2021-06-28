@@ -262,9 +262,27 @@ def modif_sol(request):
     return render(request, 'sol_tra.html')   
 
 @login_required(login_url='/LOGIN')
-def mot_rec_tr(request):#, id):
-    #if request.POST:
-    #    actualizar = solicitudtrabajo.objects.get(correo=id)
-    #    comentario_r = request.POST.get('exampleFormControlTextarea1')
-    #    solicitudtrabajo.objects.get(correo=actualizar).update(comentario=comentario_r)
-    return render(request, 'mot_rec_tr.html')
+def mot_rec_tr(request, id):#, id):
+    modific = solicitudtrabajo.objects.get(correo=id) 
+    contexto = {"modifi":modific}
+    return render(request, 'mot_rec_tr.html', contexto)
+
+@login_required(login_url='/LOGIN')
+def comrec(request):
+    mensaje = ""
+    if(request.POST):
+        email = request.POST.get("txtEmail")
+        comentarios = request.POST.get("txtCom")
+        try:
+            actualizar = solicitudtrabajo.objects.get(correo=email)
+            actualizar.comentario=comentarios
+            actualizar.save()
+            mensaje = "Rechazado"
+        except:
+            mensaje = "No rechazado"
+        contexto={"rechazado":mensaje}
+        return render(request,"mot_rec_tr.html", contexto)
+
+    contexto={"rechazo":mensaje}
+    return render(request, 'sol_tra.html')
+
