@@ -219,7 +219,16 @@ def eliminar(request, id):
     return render(request, 'sol_tra.html', contexto)
 @login_required(login_url='/LOGIN')
 def publica(request, id):
-    return render(request)
+    actualizar = solicitudtrabajo.objects.get(correo=id)
+    actualizar.publicar=True
+    actualizar.save()
+    solicitud = solicitudtrabajo.objects.all()
+    mensaje = "publicado"
+    contexto = {"trabajo":solicitud,"hecho":mensaje}
+    response = requests.get('http://127.0.0.1:8000/api/solitrab/')
+    soltapi = response.json()
+    contexto["soltapi"] = soltapi
+    return render(request, 'sol_tra.html',contexto)
 
 @login_required(login_url='/LOGIN')
 def modificar(request, id):

@@ -80,11 +80,11 @@ Solicitudes de Trabajo
                     </div>
                 </td>
                 <td>
-                    <form action="{% url 'PUBLICA' trabajo %}" method="POST">
+                    <form action="{% url 'PUBLICA' reg.correo %}" method="POST">
                         {% csrf_token %}
                         <div class="container" style="padding:0px 0px 0px 0px;margin: 25px 25px 25px 25px; width:40px;">
 
-                            <button type="submit" class="btn btn-dark">Aceptar</button>
+                            <button type="submit" class="btn btn-dark">Publicar</button>
                         </div>
                     </form>
                 </td>
