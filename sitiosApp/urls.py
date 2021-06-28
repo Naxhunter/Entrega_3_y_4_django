@@ -24,4 +24,5 @@ urlpatterns = [
     path('ELIMINAR/<id>/',eliminar, name='ELIMINAR'),
     path('PUBLICA/<id>/',publica, name='PUBLICA'),
     path('MODIFICAR/<id>/',modificar, name='MODIFICAR'),
+    path('MODIF', modif_sol, name="MODIF"),
 ]

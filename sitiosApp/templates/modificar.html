@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+<!-- SOLO EXISTO PARA SER COPYPASTEADA EN CADA PÁGINA -->
+<!-- hojas personales de css -->
+{% endblock css %}
+
+{% block tagizq %}
+<!-- añada los tag izq -->
+
+{% if user.is_authenticated %}
+<a href="{% url 'CUENTA' %}" class="Enlace" style="font-size: 20px;
+    text-decoration: none;color:#ffd859;font-weight: bold;padding-left: 10px; ">Account</a>
+<a href="#" class="Enlace" style="font-size: 20px;
+    text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px;">Bienvenido/a {{user.first_name}}</a>
+<a href="{% url 'SALIR' %}" class="Enlace" style="font-size: 20px;
+text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px;">Cerrar Sesión</a>
+<a href="{%url 'IND'%}" class="Enlace" style="font-size: 20px;
+    text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px;">Inicio</a>
+<a href="{%url 'AYUDA'%}" class="Enlace" style="font-size: 20px;
+    text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px;">Help</a>
+{% else %}
+<a href="{%url 'LOGIN'%}" class="Enlace" style="font-size: 20px;
+    text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px; ">Login</a>
+<a href="{%url 'REGISTER'%}" class="Enlace" style="font-size: 20px;
+    text-decoration: none;color:#ffd859;font-weight: bold;padding-left: 10px; ">Register</a>
+<a href="{%url 'IND'%}" class="Enlace" style="font-size: 20px;
+    text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px;">Inicio</a>
+<a href="{%url 'AYUDA'%}" class="Enlace" style="font-size: 20px;
+    text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px;">Help</a>
+{% endif %}
+{% endblock tagizq %}
+
+
+{% block titulo %}
+Modificar solicitud de trabajo
+{% endblock titulo %}
+
+{% block contenido %}
+<!-- añada el contenido personal de la página -->
+<form action="{%url 'MODIF' %}" method="POST" onsubmit="return solicitudt()" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="txtEmail" style="color:#ffd859; font-size: 20px; font-weight: bold;">Correo</label>
+        <br>
+        <input type="email" class="form-control" id="txtEmail" name="txtEmail" value="{{modifi.correo}}">
+    </div>
+    <div id="error_0"></div>
+    <br>
+    <div class="form-group">
+        <label for="txtTel" style="color:#ffd859; font-size: 20px; font-weight: bold;">Teléfono</label>
+        <br>
+        <input type="text" class="form-control" value="{{modifi.telefono}}" name="txtTel" id="txtTel">
+    </div>
+    <div id="error_1"></div>
+    <br>
+    <div class="form-group">
+        <label for="txtDesc" style="color:#ffd859; font-size: 20px; font-weight: bold;">Descripción</label>
+        <br>
+        <textarea class="form-control" name="txtDesc" id="txtDesc" rows="3">{{modifi.descripcion}}</textarea>
+    </div>
+    <div id="error_2"></div>
+    {% if not modifi %}
+    <br>
+    <div></div>
+    {% else %}
+    <br>
+    <div class="form-group">
+        <label for="txtActual" style="color:#ffd859; font-size: 20px; font-weight: bold;">Imagen actual</label>
+        <br>
+        <label name="txtActual" id="txtActual"><a href="{{modifi.imagen.url}}"><img src="{{modifi.imagen.url}}"
+                    width="200px" height="200px"></a></label>
+
+    </div>
+    <br>
+    {% endif %}
+    <div class="form-group">
+        <label for="txtFile" style="color:#ffd859; font-size: 20px; font-weight: bold;">Ingrese Imagen</label>
+        <br>
+        <input type="file" class="form-control-file" id="txtFile" name="txtFile">
+    </div>
+    <br>
+
+    
+    {% if not modifi %}
+    <a href="{% url 'SOLTRA' %}"><button type="button" class="btn btn-primary">Volver a solicitudes</button></a>
+    {% else %}
+    <button type="submit" class="btn btn-primary">Modificar solicitud</button>
+    {% endif %}
+</form>
+{% endblock contenido %}
+
+{% block js %}
+
+
+<script src="{% static 'js/jspersonal/solicitudes.js' %}"></script>
+{% endblock js %}

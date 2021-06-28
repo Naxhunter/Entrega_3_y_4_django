@@ -28,98 +28,7 @@ Solicitudes de Trabajo
 {% endblock titulo %}
 
 {% block contenido %}
-<!-- añada el contenido personal de la página 
 
-<div class="table-wrapper-scroll-y my-custom-scrollbar">
-
-    <table class="table table-bordered table-striped mb-0">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Tipo de Trabajo</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Correo</th>
-            </tr>
-        </thead>
-        <tbody>
-            <a href="#">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. A labore alias facere accusamus fuga
-                        magnam. Voluptatem, rem molestias dolorum, excepturi, suscipit repellendus labore quod officia
-                        ea porro placeat nostrum corporis!</td>
-                    <td>Mark</td>
-                    <td>amigos@Otto</td>
-                </tr>
-            </a>
-        </tbody>
-    </table>
-
-
-
-</div>
-<form action="">
-    {% csrf_token %}
-    <div class="container" style="padding:15px 5px 15px 5px;">
-        <a href="#" style="margin: 100px 100px 100px 100px;">
-            <button type="button" class="btn btn-dark">Aceptar</button></a>
-
-
-        <a href="{% url 'MTTR' %}" style="margin: 100px 100px 100px 100px;">
-            <button type="button" class="btn btn-dark">Rechazar</button></a>
-    </div>
-    <div class="container"></div>
-</form>
-<div class="table-wrapper-scroll-y my-custom-scrollbar">
-
-    <table class="table table-bordered table-striped mb-0">
-        <thead>
-            <tr>
-
-                <th scope="col">Solicitado (FECHA):</th>
-                <th scope="col">Teléfono:</th>
-                <th scope="col">Correo:</th>
-                <th scope="col">Descripción:</th>
-                <th scope="col">Imágenes:</th>
-            </tr>
-        </thead>
-        <tbody>
-            <a href="#">
-                <tr>
-                    <td>DD/MM/YYYY</td>
-                    <td>+56934748784</td>
-                    <td>guillemaripan@roja.cl</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam minima consectetur aliquam unde!
-                        Omnis numquam enim tempore id dolores, libero dolore, nam eligendi odio consectetur totam minus
-                        dicta porro cupiditate?</td>
-                    <td>
-                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="{% static 'img/icon_emp.png' %}" class="d-block w-100" alt="..." width="auto" height="auto">
-                                </div>
-                                {% for reg in trabajo %}
-                                <div class="carousel-item">
-                                    <img src="{{reg.imagen.url}}" class="d-block w-100" alt="..." width="auto" height="auto">
-                                </div>
-                                {% endfor %}
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </a>
-        </tbody>
-    </table>
-
-</div>-->
 <div class="table-wrapper-scroll-y">
     <section class="container" style="width: 1500px; margin-left: -30px;">
         <br>
@@ -188,7 +97,7 @@ Solicitudes de Trabajo
                     </form>
                 </td>
                 <td>
-                    <form action="{% url 'MODIFICAR' trabajo %}" method="POST">
+                    <form action="{% url 'MODIFICAR' reg.correo %}" method="POST">
                         {% csrf_token %}
                         <div class="container" style="padding:0px 0px 0px 0px;margin: 25px 25px 25px 25px; width:40px;">
 

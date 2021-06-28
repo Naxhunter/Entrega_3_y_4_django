@@ -220,9 +220,46 @@ def eliminar(request, id):
 @login_required(login_url='/LOGIN')
 def publica(request, id):
     return render(request)
+
 @login_required(login_url='/LOGIN')
 def modificar(request, id):
-    return render(request)
+    try:
+        modific = solicitudtrabajo.objects.get(correo=id) 
+        contexto = {"modifi":modific}
+        return render(request, 'modificar.html', contexto)
+    except:
+        mensaje = "No encontro solicitud."
+        solicitud = solicitudtrabajo.objects.all()
+        contexto = {"trabajo":solicitud,"modific":mensaje}
+        response = requests.get('http://127.0.0.1:8000/api/solitrab/')
+        soltapi = response.json()
+        contexto["soltapi"] = soltapi
+    
+    return render(request, 'sol_tra.html', contexto)
+@login_required(login_url='/LOGIN')
+def modif_sol(request):
+    mensaje = ""
+    if(request.POST):
+        correo = request.POST.get("txtEmail")
+        telefono = request.POST.get("txtTel")
+        descripcion = request.POST.get("txtDesc")
+        imagen = request.FILES.get("txtFile")
+        try:
+            actualizar = solicitudtrabajo.objects.get(correo=correo)
+            actualizar.telefono=telefono
+            actualizar.descripcion=descripcion
+            if imagen is not None:
+                actualizar.imagen=imagen
+            actualizar.comentario="--"
+            actualizar.save()
+            mensaje = "Modifico"
+        except:
+            mensaje = "No modifico"
+        contexto={"mensaje":"Solictud recibida","modifico":mensaje}
+        return render(request,"modificar.html", contexto)
+
+    contexto={"mensaje":"Solictud recibida","modifico":mensaje}
+    return render(request, 'sol_tra.html')   
 
 @login_required(login_url='/LOGIN')
 def mot_rec_tr(request):#, id):
