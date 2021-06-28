@@ -6,7 +6,7 @@ urlpatterns = [
     path('',inicio, name='IND'),
     path('BASE', base, name='BASE'),
     path('SOLAYU', sol_ayu, name='SOLAYU'),
-    path('MOTREC', mot_rec, name="MOTREC"),
+    path('MOTREC/<id>/', mot_rec, name="MOTREC"),
     path('AYUDA',ayuda, name="AYUDA"),
     path('LOGIN',login, name="LOGIN"),
     path('REGISTER',register, name="REGISTER"),
@@ -26,5 +26,7 @@ urlpatterns = [
     path('MODIFICAR/<id>/',modificar, name='MODIFICAR'),
     path('MODIF', modif_sol, name="MODIF"),
     path('COMREC',comrec, name="COMREC"),
+    path('AYUCOM',ayucom, name="AYUCOM"),
+    path("REVI/<id>",revisado, name="REVI"),
     #path('CTA/<id>/',cuentamecanico, name="CTA")
 ]

@@ -25,9 +25,6 @@ def sol_ayu(request):
     solaapi = response.json()
     contexto["solaapi"] = solaapi
     return render(request, 'sol_ayu.html',contexto)
-@login_required(login_url='/LOGIN')
-def mot_rec(request):
-    return render(request, 'mot_rec.html')
 def ayuda(request):
     if(request.POST):
         correo = request.POST.get("txtEmail")
@@ -294,7 +291,43 @@ def comrec(request):
 
     contexto={"rechazo":mensaje}
     return render(request, 'sol_tra.html')
+@login_required(login_url='/LOGIN')
+def mot_rec(request, id):
+    modific = solicitudayuda.objects.get(correo=id) 
+    contexto = {"modifi":modific}
+    return render(request, 'mot_rec.html',contexto)
 
+@login_required(login_url='/LOGIN')
+def ayucom(request):
+    mensaje = ""
+    if(request.POST):
+        email = request.POST.get("txtEmail")
+        comentarios = request.POST.get("txtCom")
+        try:
+            actualizar = solicitudayuda.objects.get(correo=email)
+            actualizar.comentario=comentarios
+            actualizar.save()
+            mensaje = "Rechazado"
+        except:
+            mensaje = "No rechazado"
+        contexto={"rechazado":mensaje}
+        return render(request,"mot_rec.html", contexto)
+
+    contexto={"rechazo":mensaje}
+    return render(request, 'sol_ayu.html')
+
+@login_required(login_url='/LOGIN')
+def revisado(request, id):
+    actualizar = solicitudayuda.objects.get(correo=id)
+    actualizar.revisado=True
+    actualizar.save()
+    solicitud = solicitudayuda.objects.all()
+    mensaje = "revisado"
+    contexto = {"trabajo":solicitud,"hecho":mensaje}
+    response = requests.get('http://127.0.0.1:8000/api/solayuda/')
+    solaapi = response.json()
+    contexto["solaapi"] = solaapi
+    return render(request, 'sol_ayu.html',contexto)
 #def cuentamecanico(request, id):
 #    soli = User.objects.get(first_name=id)
 #    mantenciones = recepciontrabajo.objects.filter(trabajador=soli.user.last_name).count()
