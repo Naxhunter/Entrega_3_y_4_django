@@ -295,13 +295,13 @@ def comrec(request):
     contexto={"rechazo":mensaje}
     return render(request, 'sol_tra.html')
 
-def cuentamecanico(request, id):
-    soli = User.objects.get(first_name=id)
-    mantenciones = recepciontrabajo.objects.filter(trabajador=soli.user.last_name).count()
-    especialidad = CategoriaUtrabajador.objects.filter(email=soli.user.username)
-    serv_sol = solicitudtrabajo.objects.filter(correo=soli.user.username).count()
-    imagen_poner = perfilusuario.objects.filter(nombre_perf=soli)
-    descripcion = CategoriaUnormal.objects.filter(email=soli.user.username)
-    contexto = {"imagenp":imagen_poner, "mantencion":mantenciones,"servicios":serv_sol, "especial":especialidad, "descri":descripcion}
+#def cuentamecanico(request, id):
+#    soli = User.objects.get(first_name=id)
+#    mantenciones = recepciontrabajo.objects.filter(trabajador=soli.user.last_name).count()
+#    especialidad = CategoriaUtrabajador.objects.filter(email=soli.user.username)
+#    serv_sol = solicitudtrabajo.objects.filter(correo=soli.user.username).count()
+#    imagen_poner = perfilusuario.objects.filter(nombre_perf=soli)
+#    descripcion = CategoriaUnormal.objects.filter(email=soli.user.username)
+#    contexto = {"imagenp":imagen_poner, "mantencion":mantenciones,"servicios":serv_sol, "especial":especialidad, "descri":descripcion}
     
-    return render(request,f"cuenta_busc.html")
+#    return render(request,f"cuenta_busc.html")
