@@ -26,4 +26,5 @@ urlpatterns = [
     path('MODIFICAR/<id>/',modificar, name='MODIFICAR'),
     path('MODIF', modif_sol, name="MODIF"),
     path('COMREC',comrec, name="COMREC"),
+    #path('CTA/<id>/',cuentamecanico, name="CTA")
 ]

@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+<!-- SOLO EXISTO PARA SER COPYPASTEADA EN CADA PÁGINA -->
+<!-- hojas personales de css -->
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    .container {
+        height: 100%;
+        align-content: center;
+    }
+
+    .image_outer_container {
+        margin-top: auto;
+        left: -100px;
+        margin-bottom: auto;
+        border-radius: 50%;
+        position: relative;
+    }
+
+    .image_inner_container {
+        border-radius: 50%;
+        padding: 5px;
+        background: #b4983a;
+        background: -webkit-linear-gradient(to bottom, #fce145, #fd1d1d, #eb6f27);
+        background: linear-gradient(to bottom, #fce145, #fd1d1d, #eb6f27);
+    }
+
+    .image_inner_container img {
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        border: 5px solid white;
+    }
+
+    .image_outer_container .green_icon {
+        background-color: #d13737;
+        position: absolute;
+        right: 30px;
+        bottom: 10px;
+        height: 30px;
+        width: 30px;
+        border: 5px solid white;
+        border-radius: 50%;
+    }
+</style>
+{% endblock css %}
+
+{% block tagizq %}
+<!-- añada los tag izq -->
+<a href="{%url 'AYUDA'%}" class="Enlace" style="font-size: 20px;
+    text-decoration: none;color:#ffd859;font-weight: bold;padding-left: 10px; ">Help</a>
+<a href="{%url 'IND'%}" class="Enlace" style="font-size: 20px;
+    text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px;">Inicio</a>
+{% endblock tagizq %}
+
+
+{% block titulo %}
+{{user.first_name}}
+{% endblock titulo %}
+
+{% block contenido %}
+<!-- añada el contenido personal de la página -->
+
+<div class="container">
+
+    {% if not imagenp %}
+    
+    <div class="container">
+        <div class="d-flex h-100">
+            <div class="image_outer_container">
+                <div class="green_icon"></div>
+                <div class="image_inner_container">
+                    <img src="{%static 'img/icon_user.png'%}">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% else %}
+    {% for reg in imagenp %}
+    <div class="container">
+        <div class="d-flex h-100">
+            <div class="image_outer_container">
+                <div class="green_icon"></div>
+                <div class="image_inner_container">
+                    <img src="{{reg.imagen.url}}">
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <ul class="list-group"
+        style="width: 60%; z-index: 2; margin-top: -300px; margin-left: 200px; height: auto; margin-top: -230px; border:solid 1px black;">
+        {% if not mantencion %}
+            <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
+                <p>Correo: </p> {{user.username}}
+            </li>
+            {% if not servicios %}
+            <li class="list-group-item" style="width: 100%; height: auto; background-color: #ffd859;">
+                <p>Servicios solicitados:</p> No registra servicios con su email.
+            </li>
+            {% else %}
+            <li class="list-group-item" style="width: 100%; height: auto; background-color: #ffd859;">
+                <p>Servicios solicitados:</p> {{servicios}}
+            </li>
+            
+            {% endif %}
+            
+        {% for reg in descri %}
+            <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
+                <p>Descripción:</p>{{reg.descripcion}}
+            </li>
+        {% endfor %}
+        {% else %}
+         <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
+            <p>Correo: </p> {{user.username}}
+        </li>
+        <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
+            <p>Mantenciones:</p>{{mantencion}}
+        </li>
+        {% for reg in especial %}
+        <li class="list-group-item" style="width: 100%; height: auto;  background-color: #ffd859;">
+            <p>Especialidad:</p>{{reg.especialidad}}
+        </li>
+        {% endfor %}
+        {% endif %}
+    </ul>
+    <br>
+
+</div>
+
+
+{% endblock contenido %}
+
+{% block js %}
+<!-- añada sus scripts -->
+{% endblock js %}
