@@ -10,8 +10,13 @@
 {% if user.is_authenticated %}
 <a href="{% url 'CUENTA' %}" class="Enlace" style="font-size: 20px;
     text-decoration: none;color:#ffd859;font-weight: bold;padding-left: 10px; ">Account</a>
-<a href="#" class="Enlace" style="font-size: 20px;
+    {% if request.user.is_superuser %}
+    <a href="#" class="Enlace" style="font-size: 20px;
+    text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px;">Bienvenido/a {{user.username}}</a>
+    {% else %}
+    <a href="#" class="Enlace" style="font-size: 20px;
     text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px;">Bienvenido/a {{user.first_name}}</a>
+    {% endif %}
 <a href="{% url 'SALIR' %}" class="Enlace" style="font-size: 20px;
 text-decoration: none;color:#ffd859;font-weight: bold; padding-left: 10px;">Cerrar Sesión</a>
 <a href="{%url 'AYUDA'%}" class="Enlace" style="font-size: 20px;
